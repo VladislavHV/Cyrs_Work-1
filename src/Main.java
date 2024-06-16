@@ -1,4 +1,68 @@
+import java.util.Arrays;
+
 class Main {
+    /*
+        Получить список всех сотрудников со всеми имеющимися по ним данными
+        (вывести в консоль значения всех полей (toString));
+         */
+    public static void printAllEmployees(Employee[] employees){
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
+
+    //Посчитать сумму затрат на ЗП в месяц;
+
+    public static int totalSalary(Employee[] employees){
+        int totalSalary = 0;
+        for (Employee employee : employees) {
+            totalSalary += employee.getSalary();
+        }
+        return totalSalary;
+    }
+
+    //Найти сотрудника с минимальной ЗП;
+    public static Employee minSalary(Employee[] employees){
+        Employee minSalary = employees[0];
+
+        for (int x = 0; x < employees.length; x++) {
+            if (employees[x].getSalary() < minSalary.getSalary()) {
+                minSalary = employees[x];
+            }
+        }
+        return minSalary;
+    }
+
+    //Найти сотрудника с максимальной ЗП;
+
+    public static Employee maxSalary(Employee[] employees){
+        Employee maxSalary = employees[0];
+        for (int x = 0; x < employees.length; x++){
+            if (employees[x].getSalary() > maxSalary.getSalary()){
+                maxSalary = employees[x];
+            }
+        }
+        return maxSalary;
+    }
+
+    //Подсчитать среднее значение зарплат (можно использовать для этого метод из пункта b);
+
+    public static int averageValue( Employee[] employees){
+        int averageValue = 0;
+        for (Employee employee : employees) {
+            averageValue += employee.getSalary();
+        }
+        return averageValue / 2;
+    }
+
+    //Распечатать ФИО всех сотрудников (метод ничего).
+
+    public static void fullNameList(Employee[] employees){
+        for (Employee employee : employees) {
+            System.out.println(employee.getFullName());
+        }
+    }
+
     public static void main(String[] args){
         /*
         Создать внутри класса Main метод main и поле типа Employee[10], которое будет
@@ -23,46 +87,38 @@ class Main {
         (вывести в консоль значения всех полей (toString));
          */
 
-        for (int x = 0; x < employees.length; x++){
-            System.out.println(employees[x]);
-        }
+        printAllEmployees(employees);
 
         System.out.println("");
         //Посчитать сумму затрат на ЗП в месяц;
 
-        int totalSalary = Employee.TotalSalary(employees.length, employees);
-        System.out.println(totalSalary);
+        System.out.println(totalSalary(employees));
 
         System.out.println("");
         //Найти сотрудника с минимальной ЗП;
 
-        Employee minSalaryEmployee = Employee.MinSalary(employees);
-        System.out.println(minSalaryEmployee);
+        System.out.println(minSalary(employees));
 
         System.out.println("");
         //Найти сотрудника с максимальной ЗП;
 
-        Employee maxSalaryEmployee = Employee.MaxSalary(employees);
-        System.out.println(maxSalaryEmployee);
+        System.out.println(maxSalary(employees));
 
         System.out.println("");
         //Подсчитать среднее значение зарплат (можно использовать для этого метод из пункта b);
 
-        int averageValue = Employee.AverageValue(employees.length, employees);
-        System.out.println((averageValue / 2));
+        System.out.println(averageValue(employees));
 
         System.out.println("");
         //Распечатать ФИО всех сотрудников (метод ничего).
 
         System.out.println("Список ФИО всех сотрудников:");
-        for (Employee employee : employees) {
-            System.out.println(employee.getFullName());
-        }
+        fullNameList(employees);
 
         System.out.println("");
         //Проиндексировать зарплату (вызвать изменение зп у всех сотрудников на величину аргумента в %)
 
-        Employee.IndexSalary(employees, 10);
+        Employee.indexSalary(employees, 10);
         for (Employee employee : employees) {
             System.out.println(employee);
         }
@@ -75,25 +131,25 @@ class Main {
 
         //Сотрудника с минимальной зп;
 
-        minSalaryEmployee = Employee.MinimumWage(employees, department);
+        Employee minSalaryEmployee = Employee.minimumWage(employees, department);
         System.out.println(department + minSalaryEmployee);
 
         System.out.println("");
         //Сотрудника с максимальной зп;
 
-        maxSalaryEmployee = Employee.MaximumWage(employees, department);
+        Employee maxSalaryEmployee = Employee.maximumWage(employees, department);
         System.out.println(department + maxSalaryEmployee);
 
         System.out.println("");
         //Сумму затрат на зп по отделу;
 
-        int costsPerDepartment = Employee.CostsPerDepartment(employees, department);
+        int costsPerDepartment = Employee.costsPerDepartment(employees, department);
         System.out.println(costsPerDepartment);
 
         System.out.println("");
         //Среднюю зп по отделу (учесть, что количество людей в отделе отличается от employees.length);
 
-        int costPerDepartmentAverage = Employee.CostPerDepartmentAverage(employees, department);
+        int costPerDepartmentAverage = Employee.costPerDepartmentAverage(employees, department);
         System.out.println(costPerDepartmentAverage);
 
         System.out.println("");
@@ -101,7 +157,7 @@ class Main {
         // в качестве параметра;
 
         double percentage = 10;
-        Employee.IndexSalariesByDepartment(employees, percentage, department);
+        Employee.indexSalariesByDepartment(employees, percentage, department);
         for (Employee employee : employees){
             if (employee.getDepartment().equals(department))
             System.out.println(employee);
@@ -110,19 +166,19 @@ class Main {
         System.out.println("");
         //Напечатать всех сотрудников отдела (все данные, кроме отдела).
 
-        Employee.PrintPerson(employees, department);
+        Employee.printPerson(employees, department);
 
         System.out.println("");
         //Получить в качестве параметра число и вывести:
         // Всех сотрудников с зп меньше числа (распечатать id, фио и зп в консоль);
 
         int salaryIsLess = 80000;
-        Employee.SalaryIsLess(employees, salaryIsLess);
+        Employee.salaryIsLess(employees, salaryIsLess);
 
         System.out.println("");
         //Всех сотрудников с зп больше (или равно) числа (распечатать id, фио и зп в консоль).
 
         int theSalaryIsMore = 100000;
-        Employee.TheSalaryIsMore(employees, theSalaryIsMore);
+        Employee.theSalaryIsMore(employees, theSalaryIsMore);
     }
 }
