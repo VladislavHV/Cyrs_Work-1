@@ -94,64 +94,22 @@ public class Employee {
         return "fullName: " + fullName + " department: " + department + " salary: " + salary;
     }
 
-    //Посчитать сумму затрат на ЗП в месяц;
-
-    static int TotalSalary(int totalSalary, Employee[] employees){
-        for (Employee employee : employees) {
-            totalSalary += employee.getSalary();
-        }
-        return totalSalary;
-    }
-
-    //Найти сотрудника с минимальной ЗП;
-    public static Employee MinSalary(Employee[] employees){
-        Employee minSalary = employees[0];
-
-        for (int x = 0; x < employees.length; x++) {
-            if (employees[x].getSalary() < minSalary.getSalary()) {
-                minSalary = employees[x];
-            }
-        }
-        return minSalary;
-    }
-
-    //Найти сотрудника с максимальной ЗП;
-
-    public static Employee MaxSalary(Employee[] employees){
-        Employee maxSalary = employees[0];
-        for (int x = 0; x < employees.length; x++){
-            if (employees[x].getSalary() > maxSalary.getSalary()){
-                maxSalary = employees[x];
-            }
-        }
-        return maxSalary;
-    }
-
-    //Подсчитать среднее значение зарплат (можно использовать для этого метод из пункта b);
-
-    public static int AverageValue(int averageValue, Employee[] employees){
-        for (Employee employee : employees) {
-            averageValue += employee.getSalary();
-        }
-        return averageValue;
-    }
-
     //Проиндексировать зарплату (вызвать изменение зп у всех сотрудников на величину аргумента в %)
 
-    public void IncreaseSalary(double percentage) {
+    public void increaseSalary1(double percentage) {
         this.salary += this.salary * percentage / 100;
     }
 
-    public static void IndexSalary(Employee[] employees, double percentage) {
+    public static void indexSalary(Employee[] employees, double percentage) {
         for (Employee employee : employees) {
-            employee.IncreaseSalary(percentage);
+            employee.increaseSalary(percentage);
         }
     }
 
     //Получить в качестве параметра номер отдела (1-5) и найти (всего 6 методов)
     //Сотрудника с минимальной зп;
 
-    public static Employee MinimumWage(Employee[] employees, String department) {
+    public static Employee minimumWage(Employee[] employees, String department) {
         Employee minSalaryEmployee = null;
         for (Employee employee : employees) {
             if (employee.getDepartment().equals(department)){
@@ -165,7 +123,7 @@ public class Employee {
 
     //Сотрудника с максимальной зп;
 
-    public static Employee MaximumWage(Employee[] employees, String department){
+    public static Employee maximumWage(Employee[] employees, String department){
         Employee maxSalaryEmployee = null;
         for (Employee employee : employees){
             if (employee.getDepartment().equals(department)){
@@ -179,7 +137,7 @@ public class Employee {
 
     //Сумму затрат на зп по отделу;
 
-    public static int CostsPerDepartment(Employee[] employees, String department){
+    public static int costsPerDepartment(Employee[] employees, String department){
         int costsPerDepartment = 0;
         for (Employee employee : employees) {
             if (employee.getDepartment().equals(department)) {
@@ -191,7 +149,7 @@ public class Employee {
 
     //Среднюю зп по отделу (учесть, что количество людей в отделе отличается от employees.length);
 
-    public static int CostPerDepartmentAverage(Employee[] employees, String department){
+    public static int costPerDepartmentAverage(Employee[] employees, String department){
         int costPerDepartmentAverage = 0;
         int count = 0;
         for (Employee employee : employees){
@@ -210,7 +168,7 @@ public class Employee {
         this.salary += this.salary * percentage / 100;
     }
 
-    public static void IndexSalariesByDepartment(Employee[] employees, double percentage, String department) {
+    public static void indexSalariesByDepartment(Employee[] employees, double percentage, String department) {
         for (Employee employee : employees) {
             if (employee.getDepartment().equals(department))
             employee.increaseSalary(percentage);
@@ -219,7 +177,7 @@ public class Employee {
 
     //Напечатать всех сотрудников отдела (все данные, кроме отдела).
 
-    public static void PrintPerson(Employee[] employees, String department){
+    public static void printPerson(Employee[] employees, String department){
 
         for (Employee employee : employees){
             if (employee.getDepartment().equals(department)){
@@ -231,7 +189,7 @@ public class Employee {
     //Получить в качестве параметра число и вывести:
     // Всех сотрудников с зп меньше числа (распечатать id, фио и зп в консоль);
 
-    public static void SalaryIsLess(Employee[] employees, int salaryIsLess){
+    public static void salaryIsLess(Employee[] employees, int salaryIsLess){
         for (Employee employee : employees){
             if (employee.getSalary() < salaryIsLess){
                 System.out.println(employee.getId() + " " + employee.getFullName() + " " + employee.getSalary());
@@ -240,7 +198,7 @@ public class Employee {
     }
 
     //Всех сотрудников с зп больше (или равно) числа (распечатать id, фио и зп в консоль).
-    public static void TheSalaryIsMore(Employee[]employees, int theSalaryIsMore){
+    public static void theSalaryIsMore(Employee[]employees, int theSalaryIsMore){
         for (Employee employee : employees){
             if (employee.getSalary() >= theSalaryIsMore){
                 System.out.println(employee.getId() + " " + employee.getFullName() + " " + employee.getSalary());
